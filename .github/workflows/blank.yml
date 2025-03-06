@@ -24,9 +24,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-
+      
       - name: Build the Centos Docker image
         run: docker build . --file Dockerfile --tag ghcr.io/gnikunj92/mycentos:latest
-
-      - name: Push the Centos Docker image
-        run: docker push ghcr.io/gnikunj92/mycentos:latest
+             
+      - name: Push the Centos Docker image        
+        run: docker login ghcr.io -u gnikunj92 --password ${{ secrets.TEMP }}
+             docker push ghcr.io/gnikunj92/mycentos:latest
